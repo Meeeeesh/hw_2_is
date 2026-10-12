@@ -33,7 +33,19 @@ def index(request):
     context = {}
     return render(request, 'app/index.html', context)
 
+def time(request):
+    current_time = datetime.now(ZoneInfo("America/Chicago"))
+    return HttpResponse(current_time.strftime("%H:%M"), content_type="text/plain")
 
+from django.http import JsonResponse
+
+def sum(request):
+    n1 = float(request.GET['n1'])
+    n2 = float(request.GET['n2'])
+    total = n1 + n2
+    if total.is_integer():
+        total = int(total)
+    return JsonResponse({"sum": total})
 
 # ---------------------------------------------------------------------------
 # HW4  — user creation
