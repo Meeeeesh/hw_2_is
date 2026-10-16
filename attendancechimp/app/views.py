@@ -39,7 +39,10 @@ from django.http import JsonResponse
 def sum_view(request):
     n1 = float(request.GET['n1'])
     n2 = float(request.GET['n2'])
-    return JsonResponse({"sum": n1+n2})
+    total = n1 + n2
+    if total.is_integer():
+        total = int(total)
+    return JsonResponse({"sum": total})
 
 # ---------------------------------------------------------------------------
 # HW4  — user creation
