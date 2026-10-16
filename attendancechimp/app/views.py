@@ -20,8 +20,6 @@ import io
 #                      Lecture, QRCodeUpload, is_instructor, is_student,
 #                      getUploadsForCourse)
 
-CDT = zoneinfo.ZoneInfo("America/Chicago")
-
 
 # ---------------------------------------------------------------------------
 # HW2  — index, time, sum
@@ -33,7 +31,7 @@ def index(request):
     return render(request, 'app/index.html', context)
 
 def time_view(request):
-    current_time = datetime.now(zoneinfo("America/Chicago"))
+    current_time = datetime.now(zoneinfo.ZoneInfo("America/Chicago"))
     return HttpResponse(current_time.strftime("%H:%M"))
 
 from django.http import JsonResponse
