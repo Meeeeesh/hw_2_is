@@ -29,23 +29,19 @@ CDT = zoneinfo.ZoneInfo("America/Chicago")
 
 def index(request):
     """Render the home page (index.html)."""
-
     context = {}
     return render(request, 'app/index.html', context)
 
-def time(request):
-    current_time = datetime.now(ZoneInfo("America/Chicago"))
-    return HttpResponse(current_time.strftime("%H:%M"), content_type="text/plain")
+def time_view(request):
+    current_time = datetime.now(zoneinfo("America/Chicago"))
+    return HttpResponse(current_time.strftime("%H:%M"))
 
 from django.http import JsonResponse
 
-def sum(request):
+def sum_view(request):
     n1 = float(request.GET['n1'])
     n2 = float(request.GET['n2'])
-    total = n1 + n2
-    if total.is_integer():
-        total = int(total)
-    return JsonResponse({"sum": total})
+    return JsonResponse({"sum": n1+n2})
 
 # ---------------------------------------------------------------------------
 # HW4  — user creation
